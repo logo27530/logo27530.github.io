@@ -354,6 +354,10 @@ marquee {
     grid-row: span 1;
   }
 }
+.product {
+  width: 100%;
+}
+
 
 
 
