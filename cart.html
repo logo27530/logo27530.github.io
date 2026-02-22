@@ -1,113 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Your Cart</title>
-<link rel="stylesheet" href="cart.css">
-</head>
-<body>
-
-<h1>🛒 Your Cart</h1>
-
-<div id="cartItems"></div>
-
-<h2>User Details</h2>
-
-<input id="name" placeholder="Your Name">
-<input id="phone" placeholder="Phone Number">
-<textarea id="address" placeholder="Full Address"></textarea>
-
-<h2>Payment Method</h2>
-<select id="payment">
-  <option>Cash on Delivery</option>
-  <option>UPI</option>
-  <option>Bank Transfer</option>
-</select>
-
-<button onclick="orderWhatsApp()">📲 Order on WhatsApp</button>
-
-<script >
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-cart = cart.filter(i => i && i.name && i.price && i.qty);
-localStorage.setItem("cart", JSON.stringify(cart));
-
-
-
-let box = document.getElementById("cartItems");
-
-let total = 0;
-box.innerHTML = "";
-
-cart.forEach(i=>{
-  if(!i.name || !i.price || !i.qty) return; // 🔥 IMPORTANT SAFETY
-
-  let itemTotal = i.price * i.qty;
-  total += itemTotal;
-
-  box.innerHTML += `
-  <div class="cart-item">
-    <span>${i.name}</span>
-
-    <div>
-      <button onclick="changeQty('${i.name}', -1)">−</button>
-      <b>${i.qty}</b>
-      <button onclick="changeQty('${i.name}', 1)">+</button>
-      <button onclick="removeItem('${i.name}')">❌</button>
-    </div>
-
-    <span>₹${itemTotal}</span>
-  </div>`;
-
-});
-
-box.innerHTML += `<hr><b>Total: ₹${total}</b>`;
-
-
-function orderWhatsApp(){
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let address = document.getElementById("address").value;
-  let payment = document.getElementById("payment").value;
-
-  if(!name || !phone || !address){
-    alert("Please fill all details");
-    return;
-  }
-
-  let msg = `🛒 *New Order* %0A
-👤 Name: ${name}%0A
-📞 Phone: ${phone}%0A
-🏠 Address: ${address}%0A
-💳 Payment: ${payment}%0A%0A`;
-
-  cart.forEach(i=>{
-    msg += `• ${i.name} × ${i.qty} = ₹${i.price*i.qty}%0A`;
-  });
-
-  msg += `%0A💰 *Total: ₹${total}*`;
-
-  window.open(`https://wa.me/918595444216?text=${msg}`,"_blank");
-}
-    function changeQty(name, delta){
-  let item = cart.find(i => i.name === name);
-  if(!item) return;
-
-  item.qty += delta;
-
-  if(item.qty <= 0){
-    cart = cart.filter(i => i.name !== name);
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  location.reload();
+body{
+  font-family: Inter, sans-serif;
+  background:#f4f6fb;
+  padding:30px;
 }
 
-function removeItem(name){
-  cart = cart.filter(i => i.name !== name);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  location.reload();
+h1,h2{
+  margin-bottom:10px;
 }
 
-</script>
-</body>
-</html>
+#cartItems{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-weight:600;
+}
+
+input, textarea, select{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+button{
+  padding:14px;
+  width:100%;
+  border:none;
+  border-radius:30px;
+  background:#25d366;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between; /* Name left, controls center, price right */
+  align-items: center;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.cart-item div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cart-item button {
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+}
+
