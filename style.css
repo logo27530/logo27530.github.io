@@ -328,13 +328,14 @@ marquee {
     grid-template-columns: 1fr;
   }
 }
-/* MOBILE FIX */
 @media (max-width: 600px) {
   .grid {
     display: grid;
-    grid-template-columns: 1fr; /* ONE product per row */
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 }
+
+
 
 
