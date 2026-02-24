@@ -357,55 +357,162 @@ marquee {
     grid-row: span 1;
   }
 
-/* ================= MOBILE CARD ALIGN FIX ================= */
+/* ===== MOBILE SIDE MARGIN FIX ===== */
 @media (max-width: 480px) {
 
-  /* GRID: 2 equal cards per row */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Reduce container padding */
+  .products {
+    padding: 20px 12px; /* was 40px 30px */
+  }
+
+  /* Reduce navbar side padding */
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  /* Ensure grid fits screen perfectly */
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  /* Make all cards equal width & no big cards */
-  .product,
-  .product.big {
     width: 100%;
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-
-  /* IMAGE: fit container */
-  .product-img {
-    height: 180px; /* smaller for mobile */
-  }
-
-  .product-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  /* DETAILS: stretch to fill remaining space */
-  .product-details {
-    display: flex;
-    flex-direction: column;
-    flex: 1;        /* stretch */
-    justify-content: space-between; /* push button down */
-    gap: 5px;
-  }
-
-  /* TITLE: fix minimum height so all cards align */
-  .product-details h4 {
-    min-height: 25px;
-    line-height: 1.3;
-  }
-
-  /* BUTTON: stay at bottom */
-  .product button {
-    margin-top: auto;
+    margin: 0;
   }
 }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* ===== FIX: Instagram & Facebook text cut on mobile ===== */
+@media (max-width: 480px) {
 
+  .social-links a {
+    display: block;
+    width: 100%;
+    white-space: normal;        /* allow text to wrap */
+    word-break: break-word;     /* break long words */
+    overflow-wrap: break-word;  /* modern support */
+  }
 
+}
+@media (max-width: 480px) {
+  .footer-container { grid-template-columns: repeat(2, 1fr); }
+}
 
+/* ===== MOBILE SLIDER FULL IMAGE FIX ===== */
+@media (max-width: 480px) {
 
+  .slider {
+    height: auto;              /* allow height to adapt */
+  }
+
+  .slide {
+    position: relative;
+  }
+
+  .slide img {
+    width: 100%;
+    height: auto;              /* show full image */
+    object-fit: contain;       /* NO cropping */
+  }
+
+  /* Move caption safely */
+  .caption {
+    position: absolute;
+    bottom: 90px;
+    left: 12px;
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  /* Shop Now button spacing */
+  .slider-shop-btn {
+    bottom: 20px;
+    padding: 10px 26px;
+    font-size: 16px;
+  }
+}
+/* ===== FINAL MOBILE SLIDER HEIGHT FIX ===== */
+@media (max-width: 480px) {
+
+  .slider {
+    height: auto !important;
+    min-height: unset;
+    padding-bottom: 20px;
+  }
+
+  .slide {
+    position: relative;
+  }
+
+  .slide img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 70px;
+    left: 12px;
+    font-size: 15px;
+    padding: 6px 10px;
+  }
+
+  .slider-shop-btn {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12px;
+    bottom: auto;
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+}
+/* ===== 100% WORKING MOBILE SLIDER FIX ===== */
+@media (max-width: 480px) {
+
+  /* Remove fixed height & hidden overflow */
+  .slider {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Make slide flow naturally */
+  .slide,
+  .slide.active {
+    position: relative !important;
+    inset: auto;
+    opacity: 1;
+  }
+
+  /* Full image visible, no crop */
+  .slide img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Caption stays on image */
+  .caption {
+    position: absolute;
+    bottom: 60px;
+    left: 12px;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  /* Button comes immediately after image */
+  .slider-shop-btn {
+    position: relative !important;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 14px 0 0;
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+}
