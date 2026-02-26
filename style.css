@@ -56,7 +56,10 @@ marquee {
 }
 
 /* ================= SLIDER ================= */
-.slider { position: relative; height: 585px; overflow: hidden; } .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; } .slide.active { opacity: 1; } .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); }
+.slider { position: relative; height: 585px; overflow: hidden; } 
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; } 
+.slide.active { opacity: 1; }
+.slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); }
 .caption {
   position: absolute;
   bottom: 480px;
@@ -492,5 +495,6 @@ html, body {
     font-size: 15px;
   }
 }
+
 
 
