@@ -60,7 +60,6 @@ marquee {
   position: relative;
   height: 585px;
   overflow: hidden;
-
 }
 
 .slide {
@@ -77,8 +76,17 @@ marquee {
 .slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Mobile default */
+  object-position: center;
   filter: brightness(0.85);
+}
+
+/* ================= DESKTOP FIX ================= */
+@media (min-width: 1024px) {
+  .slide img {
+    object-fit: contain;   /* 🔥 SHOW FULL IMAGE */
+    background: #000;      /* Optional: removes empty sides */
+  }
 }
 
 .caption {
@@ -516,3 +524,4 @@ html, body {
     font-size: 15px;
   }
 }
+
