@@ -379,122 +379,50 @@ html, body {
   .footer-container { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ===== MOBILE SLIDER FULL IMAGE FIX ===== */
+/* ================= MOBILE SLIDER (FINAL FIX) ================= */
 @media (max-width: 480px) {
 
   .slider {
-    height: auto;              /* allow height to adapt */
+    position: relative;
+    height: 260px;
+    overflow: hidden;
   }
 
   .slide {
-    position: relative;
-  }
-
-  .slide img {
-    width: 100%;
-    height: auto;              /* show full image */
-    object-fit: contain;       /* NO cropping */
-  }
-
-  /* Move caption safely */
-  .caption {
     position: absolute;
-    bottom: 90px;
-    left: 12px;
-    font-size: 16px;
-    padding: 8px 12px;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
   }
 
-  /* Shop Now button spacing */
-  .slider-shop-btn {
-    bottom: 20px;
-    padding: 10px 26px;
-    font-size: 16px;
-  }
-}
-/* ===== FINAL MOBILE SLIDER HEIGHT FIX ===== */
-@media (max-width: 480px) {
-
-  .slider {
-    height: auto !important;
-    min-height: unset;
-    padding-bottom: 20px;
-  }
-
-  .slide {
-    position: relative;
-  }
-
-  .slide img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-  }
-
-  .caption {
-    position: absolute;
-    bottom: 70px;
-    left: 12px;
-    font-size: 15px;
-    padding: 6px 10px;
-  }
-
-  .slider-shop-btn {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 12px;
-    bottom: auto;
-    padding: 10px 24px;
-    font-size: 15px;
-  }
-}
-/* ===== 100% WORKING MOBILE SLIDER FIX ===== */
-@media (max-width: 480px) {
-
-  /* Remove fixed height & hidden overflow */
-  .slider {
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  /* Make slide flow naturally */
-  .slide,
   .slide.active {
-    position: relative !important;
-    inset: auto;
     opacity: 1;
   }
 
-  /* Full image visible, no crop */
   .slide img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
+    height: 100%;
+    object-fit: contain; /* full image, no crop */
   }
 
-  /* Caption stays on image */
   .caption {
     position: absolute;
-    bottom: 60px;
+    bottom: 65px;
     left: 12px;
     font-size: 14px;
     padding: 6px 10px;
   }
 
-  /* Button comes immediately after image */
   .slider-shop-btn {
-    position: relative !important;
-    bottom: auto;
+    position: absolute;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
-    margin: 14px 0 0;
-    padding: 10px 24px;
+    padding: 10px 22px;
     font-size: 15px;
   }
 }
+
 
 
 
